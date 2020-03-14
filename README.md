@@ -1,1 +1,3 @@
-# recsys
+# RecSys
+
+Recommender system
