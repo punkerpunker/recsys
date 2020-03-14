@@ -3,7 +3,7 @@ import pandas as pd
 import scipy.sparse as sparse
 import datetime
 import dateutil.relativedelta
-from ALSRecommender.seasonality import get_seasonality_weekly
+from ALSRecommender.seasonality import get_seasonality
 from pandas import DataFrame
 
 
@@ -60,7 +60,7 @@ class RecSys:
     def make_recommendations(self, bills, products, prices,
                              group_seasonality_column='level_2_name', bills_date_column='dates',
                              num_recommendations=1000, filter_already_liked=False, week_threshold=1):
-        seas_df = get_seasonality_weekly(bills, date_column=bills_date_column, group_column=group_seasonality_column)
+        seas_df = get_seasonality(bills, date_column=bills_date_column, group_column=group_seasonality_column)
         seas_df = seas_df[seas_df['week'] == self.get_weeknum(threshold=week_threshold)]
         # Считаем рекоммендации с вероятностями
         recs = self.get_recommendations_proba(filter_already_liked=filter_already_liked,
